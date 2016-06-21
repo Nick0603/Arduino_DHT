@@ -4,7 +4,7 @@
 dht DHT;
 
 int Alert_Value = 60;
-int count = 10;
+int count = 20;
 
 void setup(){
   Serial.begin(9600);
@@ -16,18 +16,17 @@ void loop(){
   if(count == 0){
     DHT.read11(dht_pin);    
     print_HT();
-    count = 10;
+    count = 20;
   }
   
-  if(DHT.humidity > 40){
-    digitalWrite(led_pin,HIGH);
-    delay(100);
+  if(DHT.humidity > 40 && count % 2 ==0){
+    digitalWrite(led_pin,HIGH); 
+  }else{
     digitalWrite(led_pin,LOW);
-    delay(100);   
   }
   
   count--;
-  delay(100);
+  delay(50);
 }
 
 
